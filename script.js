@@ -11,26 +11,21 @@ window.onload = function() {
 
 // - - - - - - - - - - -
 
-var svg;
+var last;
 var canvasSize;
 var BrushSize = 20;
 var Transparency = 100;
 var save = false;
 // var strokes[];
 var Done = function() {
-  save = true;
+  saveCanvas('last', 'png');;
 }
 
-function preload() {
-  svg = loadSVG('test.svg');
-}
+// function preload() {
+//   last = loadImage('last.png');
+// }
 
 function setup(){
-  createCanvas(canvasSize, canvasSize, SVG); //window or display
-  smooth();
-  background(255);
-
-  image(svg, 0, 0, 200, 200);
 
   if(windowWidth > windowHeight){
     canvasSize = windowHeight - 20;
@@ -38,6 +33,11 @@ function setup(){
     canvasSize = windowWidth - 20;
   }
 
+  createCanvas(canvasSize, canvasSize); //window or display
+  smooth();
+  background(255);
+
+  // image(last, 0, 0, canvasSize, canvasSize);
 
 }
 
