@@ -4,15 +4,15 @@
 
 window.onload = function() {
   var gui = new dat.GUI();
-  gui.add(window, 'BrushSize', { Small: 5, Medium: 40, Large: 100 } );
-  gui.add(window, 'Alpha', { "10%": 25, "50%": 127, "100%": 255 } );
+  gui.add(window, 'BrushSize', 0, 100);// or dropdown - { Small: 5, Medium: 40, Large: 100 } );
+  gui.add(window, 'Transparency', 0, 100);// { "10%": 25, "50%": 127, "100%": 255 } );
 };
 
 // - - - - - - - - - - -
 
 var canvasSize;
-var BrushSize = 10;
-var Alpha = 255
+var BrushSize = 20;
+var Transparency = 0;
 
 function setup(){
 
@@ -22,27 +22,30 @@ function setup(){
     canvasSize = windowWidth - 20;
   }
   createCanvas(canvasSize, canvasSize); //window or display
+
+  BrushSize = canvasSize/BrushSize;
   background(255);
   smooth();
 }
 
 function draw(){
-  stroke(0,Alpha);
+  var alpha = map(Transparency, 0, 100, 255,0);
+  stroke(0, alpha);
   strokeWeight(BrushSize);
   if (mouseIsPressed){
     line(pmouseX,pmouseY,mouseX,mouseY);
   }
 }
 
-
-function windowResized() {
-  if(windowWidth > windowHeight) {
-    canvasSize = windowHeight - 20;
-  } else {
-    canvasSize = windowWidth - 20;
-  }
-  resizeCanvas(canvasSize, canvasSize);
-}
+// ---------------resize - won't reload
+// function windowResized() {
+//   if(windowWidth > windowHeight) {
+//     canvasSize = windowHeight - 20;
+//   } else {
+//     canvasSize = windowWidth - 20;
+//   }
+//   resizeCanvas(canvasSize, canvasSize);
+// }
 
 
 
