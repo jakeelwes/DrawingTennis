@@ -11,6 +11,7 @@ window.onload = function() {
 
 // - - - - - - - - - - -
 
+var svg;
 var canvasSize;
 var BrushSize = 20;
 var Transparency = 100;
@@ -20,7 +21,16 @@ var Done = function() {
   save = true;
 }
 
+function preload() {
+  svg = loadSVG('test.svg');
+}
+
 function setup(){
+  createCanvas(canvasSize, canvasSize, SVG); //window or display
+  smooth();
+  background(255);
+
+  image(svg, 0, 0, 200, 200);
 
   if(windowWidth > windowHeight){
     canvasSize = windowHeight - 20;
@@ -28,9 +38,7 @@ function setup(){
     canvasSize = windowWidth - 20;
   }
 
-  createCanvas(canvasSize, canvasSize); //window or display
-  background(255);
-  smooth();
+
 }
 
 function draw(){
