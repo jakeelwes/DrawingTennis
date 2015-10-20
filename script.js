@@ -27,11 +27,10 @@ function setup(){
 }
 
 function draw(){
-  // stroke(0,Alpha);
-  // strokeWeight(BrushSize);
+  stroke(0,Alpha);
+  strokeWeight(BrushSize);
   if (mouseIsPressed){
-    // line(pmouseX,pmouseY,mouseX,mouseY);
-    image( cir, mouseX, mouseY);
+    line(pmouseX,pmouseY,mouseX,mouseY);
   }
 }
 
@@ -69,7 +68,9 @@ function windowResized() {
 //     }
 // }
 
+
 // ---------------how to make blur
+// in setup
 // PGraphics brush = createGraphics(200,200);
 // brush.beginDraw();
 // brush.background(0,0,0,0);
@@ -80,3 +81,5 @@ function windowResized() {
 // brush.endDraw();
 // cir = brush.get();
 // imageMode(CENTER);
+// in Draw
+// image( cir, mouseX, mouseY);
