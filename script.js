@@ -11,8 +11,8 @@ window.onload = function() {
 // - - - - - - - - - - -
 
 var canvasSize;
-var BrushSize = 20;
-var Transparency = 0;
+var BrushSize = 10;
+var Transparency = 100;
 
 function setup(){
 
@@ -21,19 +21,19 @@ function setup(){
   } else {
     canvasSize = windowWidth - 20;
   }
-  createCanvas(canvasSize, canvasSize); //window or display
 
-  BrushSize = canvasSize/BrushSize;
+  createCanvas(canvasSize, canvasSize); //window or display
   background(255);
   smooth();
 }
 
 function draw(){
-  var alpha = map(Transparency, 0, 100, 255,0);
+  var alpha = map(Transparency, 0, 100, 0, 255);
+  var bsize = map(BrushSize, 0, 100, 0, canvasSize/3);
   stroke(0, alpha);
-  strokeWeight(BrushSize);
+  strokeWeight(bsize);
   if (mouseIsPressed){
-    line(pmouseX,pmouseY,mouseX,mouseY);
+    line(pmouseX,pmouseY,mouseX,mouseY); //could use vertex and shape? - contant alpha
   }
 }
 
