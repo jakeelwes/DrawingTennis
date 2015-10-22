@@ -23,15 +23,15 @@ var Reset = function() {
   noStroke();
   fill(255);
   rect(0,0,width,height);
-  // image(last, 0, 0, canvasSize, canvasSize);
+  image(last, 0, 0, canvasSize, canvasSize);
 }
 var Finish = function() {
   save('img' + (fileCounter++).toString());//, 'png');;
 }
 
-// function preload() {
-//   last = loadImage('img0.png');
-// }
+function preload() {
+  last = loadSVG('img0.svg');
+}
 
 function setup(){
 
@@ -45,7 +45,7 @@ function setup(){
   smooth();
   background(255);
 
-  // image(last, 0, 0, canvasSize, canvasSize);
+  image(last, 0, 0, canvasSize, canvasSize);
 
 
 }
