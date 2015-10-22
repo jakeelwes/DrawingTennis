@@ -17,17 +17,21 @@ var canvasSize;
 var BrushSize = 20;
 var Transparency = 100;
 var save = false;
+var fileCounter = 0;
 // var strokes[];
 var Reset = function() {
-  image(last, 0, 0, canvasSize, canvasSize);
+  noStroke();
+  fill(255);
+  rect(0,0,width,height);
+  // image(last, 0, 0, canvasSize, canvasSize);
 }
 var Finish = function() {
-  saveCanvas('last', 'png');;
+  save('img' + (fileCounter++).toString());//, 'png');;
 }
 
-function preload() {
-  last = loadImage('last.png');
-}
+// function preload() {
+//   last = loadImage('img0.png');
+// }
 
 function setup(){
 
@@ -37,11 +41,12 @@ function setup(){
     canvasSize = windowWidth - 20;
   }
 
-  createCanvas(canvasSize, canvasSize); //window or display
+  createCanvas(canvasSize, canvasSize, SVG); //window or display
   smooth();
   background(255);
 
-  image(last, 0, 0, canvasSize, canvasSize);
+  // image(last, 0, 0, canvasSize, canvasSize);
+
 
 }
 
@@ -50,11 +55,12 @@ function draw(){
   var bsize = map(pow(BrushSize,2), 0, 10000, 0, canvasSize/3);
 
   noFill();
-  stroke(255, alpha);
+  stroke(0, alpha);
   strokeWeight(bsize);
 
   if (mouseIsPressed){
     line(pmouseX,pmouseY,mouseX,mouseY); //could use vertex and shape? - contant alpha
+    console.log("draw");
   }
 }
 
@@ -102,34 +108,6 @@ function draw(){
 //   }
 //   resizeCanvas(canvasSize, canvasSize);
 // }
-
-
-
-
-
-// ---------------how to export svg
-// var svg, path;
-// function preload() {
-//     svg = loadSVG('test.svg');
-//     frameRate(20);
-// }
-//
-// function setup() {
-//     createCanvas(600, 200, SVG);
-//     image(svg, 0, 0, 200, 200);
-//     path = querySVG('path')[1];
-// }
-//
-// function draw() {
-//     // update line width of 2nd line
-//     path.attribute('stroke-width', frameCount % 20);
-//     if (frameCount === 18) {
-//         noLoop();
-//         save(); // save current SVG graphics
-//     }
-// }
-
-
 
 
 // ---------------how to make blur processing
