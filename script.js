@@ -12,13 +12,16 @@ window.onload = function() {
 
 // - - - - - - - - - - -
 
+// P5 Sketch
+
+var count = "<?php echo $count ?>";
 var last;
 var canvasSize;
 var BrushSize = 20;
 var Transparency = 100;
 var save = false;
 var fileCounter = 0;
-// var strokes[];
+
 var Reset = function() {
   noStroke();
   fill(255);
@@ -30,7 +33,7 @@ var Finish = function() {
 }
 
 function preload() {
-  last = loadSVG('img0.svg');
+  last = loadSVG('svgs/img0.svg');
 }
 
 function setup(){
@@ -47,6 +50,7 @@ function setup(){
 
   image(last, 0, 0, canvasSize, canvasSize);
 
+  console.log(count);
 
 }
 
@@ -60,7 +64,6 @@ function draw(){
 
   if (mouseIsPressed){
     line(pmouseX,pmouseY,mouseX,mouseY); //could use vertex and shape? - contant alpha
-    console.log("draw");
   }
 }
 
@@ -75,8 +78,6 @@ function draw(){
 //   // dataType: dataType //text/json...
 // });
 
-
-
 // ---------------- check if file exists
 // $.get(002.png)
 //     .done(function() {
@@ -84,19 +85,6 @@ function draw(){
 //     }).fail(function() {
 //         console.log("Doesnt.")
 //     })
-
-
-
-
-// ---------------using shape
-// beginShape();
-// while (mouseIsPressed){
-//   vertex(mouseX, mouseY);
-//   vertex(0,0);
-// }
-// endShape();
-
-
 
 
 // ---------------resize - won't reload
@@ -108,19 +96,3 @@ function draw(){
 //   }
 //   resizeCanvas(canvasSize, canvasSize);
 // }
-
-
-// ---------------how to make blur processing
-// in setup
-// PGraphics brush = createGraphics(200,200);
-// brush.beginDraw();
-// brush.background(0,0,0,0);
-// brush.fill(0);
-// brush.noStroke();
-// brush.ellipse(100,100,BrushSize,BrushSize);
-// brush.filter(BLUR,5);
-// brush.endDraw();
-// cir = brush.get();
-// imageMode(CENTER);
-// in Draw
-// image( cir, mouseX, mouseY);
