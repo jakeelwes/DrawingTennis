@@ -14,26 +14,29 @@ window.onload = function() {
 
 // P5 Sketch
 
-var count = "<?php echo $count ?>";
-var last;
+var img;
 var canvasSize;
 var BrushSize = 20;
 var Transparency = 100;
-var save = false;
-var fileCounter = 0;
+var fileCounter = 1;
+var count = "<?php echo $count ?>";
+var brushCol;
 
 var Reset = function() {
   noStroke();
   fill(255);
   rect(0,0,width,height);
-  image(last, 0, 0, canvasSize, canvasSize);
+  image(img, 0, 0, canvasSize, canvasSize);
 }
 var Finish = function() {
   save('img' + (fileCounter++).toString());//, 'png');;
+  noStroke();
+  fill(255, 50);
+  rect(0,0,width,height);
 }
 
 function preload() {
-  last = loadSVG('svgs/img0.svg');
+  img = loadSVG('svgs/img' + fileCounter + '.svg');
 }
 
 function setup(){
@@ -48,9 +51,15 @@ function setup(){
   smooth();
   background(255);
 
-  image(last, 0, 0, canvasSize, canvasSize);
+  image(img, 0, 0, canvasSize, canvasSize);
 
   console.log(count);
+
+  if (fileCounter % 2 == 0) {
+    brushCol = 0;
+  } else if (fileCounter % 2 == 1) {
+    brushCol = 255;
+  }
 
 }
 
@@ -59,13 +68,14 @@ function draw(){
   var bsize = map(pow(BrushSize,2), 0, 10000, 0, canvasSize/3);
 
   noFill();
-  stroke(0, alpha);
+  stroke(brushCol, alpha);
   strokeWeight(bsize);
 
   if (mouseIsPressed){
     line(pmouseX,pmouseY,mouseX,mouseY); //could use vertex and shape? - contant alpha
   }
 }
+
 
 
 
