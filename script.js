@@ -1,16 +1,4 @@
-// - - - - - - - - - - -
 
-// DAT.GUI
-
-window.onload = function() {
-  var gui = new dat.GUI();
-  gui.add(window, 'BrushSize', 0, 100);// or dropdown - { Small: 5, Medium: 40, Large: 100 } );
-  gui.add(window, 'Transparency', 0, 100);// { "10%": 25, "50%": 127, "100%": 255 } );
-  gui.add(window, 'Reset');
-  gui.add(window, 'Finish');
-};
-
-// - - - - - - - - - - -
 
 // P5 Sketch
 
@@ -18,8 +6,9 @@ var img;
 var canvasSize;
 var BrushSize = 20;
 var Transparency = 100;
-var fileCounter = 1;
-var count = "<?php echo $count ?>";
+var div = document.getElementById("dom-target");
+var fileCounter = Number(div.textContent) - 1;
+
 var brushCol;
 
 var Reset = function() {
@@ -53,8 +42,6 @@ function setup(){
 
   image(img, 0, 0, canvasSize, canvasSize);
 
-  console.log(count);
-
   if (fileCounter % 2 == 0) {
     brushCol = 0;
   } else if (fileCounter % 2 == 1) {
@@ -75,6 +62,20 @@ function draw(){
     line(pmouseX,pmouseY,mouseX,mouseY); //could use vertex and shape? - contant alpha
   }
 }
+
+// - - - - - - - - - - -
+
+// DAT.GUI
+
+window.onload = function() {
+  var gui = new dat.GUI();
+  gui.add(window, 'BrushSize', 0, 100);// or dropdown - { Small: 5, Medium: 40, Large: 100 } );
+  gui.add(window, 'Transparency', 0, 100);// { "10%": 25, "50%": 127, "100%": 255 } );
+  gui.add(window, 'Reset');
+  gui.add(window, 'Finish');
+};
+
+// - - - - - - - - - - -
 
 
 
