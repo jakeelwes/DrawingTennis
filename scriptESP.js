@@ -4,8 +4,7 @@ var img;
 var canvasSize;
 var BrushSize = 20;
 var Transparency = 100;
-var div = document.getElementById("dom-target");
-var fileCounter = Number(div.textContent) - 1;
+var fileCounter = 2;
 
 var isMobile = false; //initiate as false
 // device detection
@@ -21,28 +20,23 @@ var Reset = function() {
 }
 
 var Finish = function() {
-  var input = document.getElementById("file");
-    file = input.files[0];
-    if(file != undefined){
-      formData= new FormData();
-      if(!!file.type.match(/image.*/)){
-        formData.append("image", file);
-        $.ajax({
-          url: "upload.php",
-          type: "POST",
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function(data){
-              alert('success');
-          }
-        });
-      }
-    }
+  $.ajax({
+        url: "saveFile.php",
+        //data, an url-like string for easy access serverside
+        data : save(),
+        cache: false,
+        async: true,
+        type: 'post',
+        timeout : 5000
+    });
+  // save('img' + (fileCounter++).toString());//, 'png');;
+  noStroke();
+  fill(255, 50);
+  rect(0,0,width,height);
 }
 
 function preload() {
-  img = loadSVG('svgs/img' + fileCounter + '.svg');
+  img = loadSVG('img' + fileCounter + '.svg');
 }
 
 function setup(){
@@ -80,10 +74,9 @@ function draw(){
   noFill();
   stroke(brushCol, alpha);
   strokeWeight(bsize);
-  if (!isMobile) {
-    if (mouseIsPressed){
-      line(pmouseX,pmouseY,mouseX,mouseY); //could use vertex and shape? - contant alpha
-    }
+
+  if (mouseIsPressed){
+    line(pmouseX,pmouseY,mouseX,mouseY); //could use vertex and shape? - contant alpha
   }
 }
 
@@ -100,6 +93,65 @@ function touchMoved() {
   }
 }
 
+
+var counter;
+var req;
+
+function updateCounter(){
+	req = new XMLHttpRequest();
+	req.onreadystatechange = function(){
+		if (req.readyState == 4){
+      		if(req.status == 200){
+      			counter = JSON.parse(req.responseText);
+
+      		} else if (req.status == 404){
+      			counter = new Object();
+      			counter.count = 0;
+      		} else {
+      			alert("Error getting count.");
+      			return;
+      		}
+      		counter.count++;
+      		writeTextFile(counter, "/count.json", function(){
+      			alert("The count is: " + counter.count);
+      		});
+      	}
+	};
+	req.open("GET", "/count.json?" + (new Date()).getTime(), true);
+	req.send(null);
+}
+
+function writeTextFile(jsonObject, filename, callback){
+	req = new XMLHttpRequest();
+	  req.onreadystatechange = function(){
+	  	  if (req.readyState == 4){
+            if(req.status == 200) {
+            	callback();
+            } else {
+            	alert("Error uploading: " + req.statusText);
+            }
+          }
+	  };
+	  req.upload.onprogress = function(e){
+	  	console.log("progress:", e);
+	  };
+
+	  var formData = new FormData();
+
+	  var blob = new Blob([JSON.stringify(jsonObject)], {type:"text/json"});
+	  formData.append("data", blob, filename);
+	  req.open("POST", "/edit");
+	  req.send(formData);
+}
+
+function writeSomeObject(){
+	var obj = new Object();
+	obj.someproperty = "xyzblahblahblah";
+	obj.someotherproperty = "something";
+	writeTextFile(obj, "/test.txt", function(){
+		alert("Text file uploaded. (Replace me.)");
+	});
+}
 
 
 
