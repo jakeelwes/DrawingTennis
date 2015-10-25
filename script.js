@@ -22,6 +22,8 @@ var Reset = function() {
 
 var Finish = function() {
   save('img' + (fileCounter++).toString());//, 'png');;
+  img = loadSVG('svgs/img' + (fileCounter-1).toString() + '.svg');
+  image(img, 0, 0, canvasSize, canvasSize);
 }
 
 function preload() {
