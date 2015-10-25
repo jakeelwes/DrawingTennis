@@ -5,7 +5,7 @@ var canvasSize;
 var BrushSize = 20;
 var Transparency = 100;
 var div = document.getElementById("dom-target");
-var fileCounter = Number(div.textContent) - 1;
+var fileCounter = 0;
 
 var isMobile = false; //initiate as false
 // device detection
@@ -21,7 +21,7 @@ var Reset = function() {
 }
 
 var Finish = function() {
-  save();
+  save('img' + (fileCounter++).toString());//, 'png');;
 }
 
 function preload() {
