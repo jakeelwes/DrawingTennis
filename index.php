@@ -6,6 +6,7 @@
 
   <script src="js/p5.js"></script>
   <script src="js/p5.svg.js"></script>
+  <script src="js/p5.dom.js"></script>
   <script src="js/dat.gui.min.js"></script>
   <script src="js/jquery-2.1.4.min.js"></script>
 

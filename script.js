@@ -29,9 +29,9 @@ var Finish = function() {
   }
 
   function errorCallback(obj) {
-    alert(obj);
+    alert("could not upload");
   }
-  post("saveFile.php", svgText, "text", savedCallback, errorCallback);
+  httpPost("saveFile.php", svgText, "text", savedCallback, errorCallback);
 }
 
 function preload() {
@@ -92,18 +92,6 @@ function touchMoved() {
 	  return false;
   }
 }
-
-
-
-
-// --------------- use ajax & jquery to write file to server?
-// $.ajax({
-//   type: 'POST',
-//   // url: url,//url of receiver file on server
-//   // data: data, //your data
-//   // success: success, //callback when ajax request finishes
-//   // dataType: dataType //text/json...
-// });
 
 // ---------------resize - won't reload
 // function windowResized() {
