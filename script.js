@@ -21,17 +21,17 @@ var Reset = function() {
 }
 
 var Finish = function() {
-  var canvas = document.getElementById("defaultCanvas)";
+  var canvas = document.getElementById("defaultCanvas");
   var svgText = canvas.innerHTML;
 
   function savedCallback(){
-    window.location.href = "host/afssadf.hhtml"
+    window.location.href = "host/saved.html"
   }
 
   function errorCallback(obj) {
     alert(obj);
   }
-  post("saveFile", svgText, "text", savedCallback, errorCallback);
+  post("saveFile.php", svgText, "text", savedCallback, errorCallback);
 }
 
 function preload() {
