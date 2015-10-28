@@ -21,24 +21,17 @@ var Reset = function() {
 }
 
 var Finish = function() {
-  var input = document.getElementById("file");
-    file = input.files[0];
-    if(file != undefined){
-      formData= new FormData();
-      if(!!file.type.match(/image.*/)){
-        formData.append("image", file);
-        $.ajax({
-          url: "upload.php",
-          type: "POST",
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function(data){
-              alert('success');
-          }
-        });
-      }
-    }
+  var canvas = document.getElementById("defaultCanvas)";
+  var svgText = canvas.innerHTML;
+
+  function savedCallback(){
+    window.location.href = "host/afssadf.hhtml"
+  }
+
+  function errorCallback(obj) {
+    alert(obj);
+  }
+  post("saveFile", svgText, "text", savedCallback, errorCallback);
 }
 
 function preload() {
