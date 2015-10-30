@@ -4,6 +4,8 @@ var img;
 var canvasSize;
 var BrushSize = 20;
 var Transparency = 100;
+var brushCol;
+
 var div = document.getElementById("dom-target");
 var fileCounter = Number(div.textContent) - 1;
 
@@ -14,8 +16,6 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
     isMobile = true;
 }
 
-var brushCol;
-
 var Reset = function() {
   window.location.reload();
 }
@@ -25,12 +25,14 @@ var Finish = function() {
   var svgText = canvas.innerHTML;
 
   function savedCallback(){
-    window.location.href = "host/saved.html"
+    window.location.href = "http://drawingtennis.dx.am/saved.html";
   }
 
   function errorCallback(obj) {
-    alert("could not upload");
+    alert("could not upload" + obj);
+    console.log(obj)
   }
+
   httpPost("saveFile.php", svgText, "text", savedCallback, errorCallback);
 }
 

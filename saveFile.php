@@ -1,7 +1,7 @@
 <?php
 
 $dir = "svgs/";
-$count = -2;
+$count = -2; // because of ./ and  ../
 
 // Open a directory, and read its contents
 if (is_dir($dir)){
@@ -13,7 +13,10 @@ if (is_dir($dir)){
   }
 }
 
-$target_dir = "svgs/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"][$count]["name"]);
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+  $fh = fopen('./svgs/' . 'img' . $count . '.svg', 'a');
+
+  fwrite($fh, print_r($_REQUEST, true));
+
+  fclose($fh);
+
 ?>

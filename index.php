@@ -3,6 +3,8 @@
   <!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
   <!-- for iphone check doc https://github.com/processing/p5.js/issues/350 -->
   <title>DrawingTennis</title>
+  <meta name="description" content="Exquisite corpse drawing app where you add/subtract from the last persons drawing.">
+  <meta name="KEYWORDS" content="Jake Elwes, Drawing App, P5.js, SAIC, Slade, Exquisite corpse, add, subtract">
 
   <script src="js/p5.js"></script>
   <script src="js/p5.svg.js"></script>
@@ -34,7 +36,7 @@
   <div id="dom-target" style="display: none;">
     <?php
     $dir = "svgs/";
-    $count = -2;
+    $count = -2; 
 
     // Open a directory, and read its contents
     if (is_dir($dir)){
