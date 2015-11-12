@@ -36,7 +36,7 @@
   <div id="dom-target" style="display: none;">
     <?php
     $dir = "svgs/";
-    $count = -2; 
+    $count = -2;
 
     // Open a directory, and read its contents
     if (is_dir($dir)){

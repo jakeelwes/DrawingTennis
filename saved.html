@@ -1,5 +1,72 @@
 <html>
 
-saved
+<head>
+
+  <title>Thank you</title>
+
+
+  <script src="js/p5.js"></script>
+  <script src="js/p5.svg.js"></script>
+  <script src="js/p5.dom.js"></script>
+
+/*<style>
+body {
+    padding: 0;
+    margin: auto;
+    display: block;
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-style: solid;
+    border-color: #ffffff;
+}
+</style>*/
+</head>
+
+<body bgcolor="#555555">
+
+  <div id="dom-target" style="display: none;">
+    <?php
+    $dir = "svgs/";
+    $count = -2;
+
+    // Open a directory, and read its contents
+    if (is_dir($dir)){
+      if ($dh = opendir($dir)){
+        while (($file = readdir($dh)) !== false){
+          // echo "filename:" . $file . "<br>";
+          $count++;
+        }
+        closedir($dh);
+        // echo $count;
+        echo htmlspecialchars($count);
+      }
+    }
+    ?>
+  </div>
+
+  <script>
+
+  var div = document.getElementById("dom-target");
+  var fileCounter = Number(div.textContent) - 1;
+
+    for (var i = 0; i <= fileCounter; i++){
+
+      var name = 'pic' + i + '.svg';
+
+      <img src=name>
+
+    }
+  </script>
+
+
+
+
+
+</body>
 
 </html>
