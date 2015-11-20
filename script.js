@@ -6,8 +6,8 @@ var BrushSize = 20;
 var Transparency = 100;
 var brushCol;
 
-var div = document.getElementById("dom-target");
-var fileCounter = Number(div.textContent) - 1;
+// var div = document.getElementById("dom-target");
+// var fileCounter = Number(div.textContent) - 1;
 
 var isMobile = false; //initiate as false
 // device detection
@@ -25,20 +25,20 @@ var Finish = function() {
   var svgText = canvas.innerHTML;
 
   function savedCallback(){
-    window.location.href = "http://drawingtennis.dx.am/saved.html";
+    window.location.href = "http://jakeelwes.com/drawingtennis/saved.html";
   }
 
   function errorCallback(obj) {
     alert("could not upload" + obj);
     console.log(obj)
   }
-
-  httpPost("saveFile.php", svgText, "text", savedCallback, errorCallback);
+  console.log(svgText)
+  $.post("http://drawingtennis.herokuapp.com/save", {data: svgText}, savedCallback);
 }
 
-function preload() {
-  img = loadSVG('svgs/img' + fileCounter + '.svg');
-}
+// function preload() {
+//   img = loadSVG('svgs/img' + fileCounter + '.svg');
+// }
 
 function setup(){
 
@@ -58,17 +58,19 @@ function setup(){
   gui.add(window, 'Reset');
   gui.add(window, 'Finish');
 
-  image(img, 0, 0, canvasSize, canvasSize);
+  // image(img, 0, 0, canvasSize, canvasSize);
 
-  if (fileCounter % 2 == 0) {
-    brushCol = 0;
-  } else if (fileCounter % 2 == 1) {
-    brushCol = 255;
-  }
+  // if (fileCounter % 2 == 0) {
+  //   brushCol = 0;
+  // } else if (fileCounter % 2 == 1) {
+  //   brushCol = 255;
+  // }
+  brushCol = 0;
 
 }
 
 function draw(){
+
   var alpha = map(Transparency, 0, 100, 0, 255);
   var bsize = map(pow(BrushSize,2), 0, 10000, 0, canvasSize/3);
 
