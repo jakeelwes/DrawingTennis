@@ -8,13 +8,15 @@
   <script src="js/p5.js"></script>
   <script src="js/p5.svg.js"></script>
   <script src="js/p5.dom.js"></script>
+  <script src="js/jquery-2.1.4.min.js"></script>
 
-/*<style>
+
+<style>
 body {
     padding: 0;
     margin: auto;
     display: block;
-    width: 800px;
+    width: 600px;
     height: 600px;
     position: absolute;
     top: 0;
@@ -24,47 +26,59 @@ body {
     border-style: solid;
     border-color: #ffffff;
 }
-</style>*/
+div {
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  padding: 0;
+
+
+
+}
+</style>
+
 </head>
 
-<body bgcolor="#555555">
+<body bgcolor="#222222">
 
-  <div id="dom-target" style="display: none;">
-    <?php
-    $dir = "svgs/";
-    $count = -2;
+<div id="svg0" height=400></div>
+<div id="svg1" height=400></div>
+<div id="svg2" height=400></div>
+<div id="svg3" height=400></div>
+<div id="svg4" height=400></div>
+<div id="svg5" height=400></div>
+<div id="svg6" height=400></div>
+<div id="svg7" height=400></div>
 
-    // Open a directory, and read its contents
-    if (is_dir($dir)){
-      if ($dh = opendir($dir)){
-        while (($file = readdir($dh)) !== false){
-          // echo "filename:" . $file . "<br>";
-          $count++;
-        }
-        closedir($dh);
-        // echo $count;
-        echo htmlspecialchars($count);
-      }
-    }
-    ?>
-  </div>
 
   <script>
 
-  var div = document.getElementById("dom-target");
-  var fileCounter = Number(div.textContent) - 1;
+  $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
+    console.log("THE SERVER SAYS: ", result)
+    // `result` here is an array of objects.
+    // result.pop() returns the most recent object.
+    // result.pop()['data'] is the svg string from that (most recent) object
+    // console.log("number of saved drawings: ", result.length)
+    // console.log("most recent drawing: ", result.pop()['data'])
 
-    for (var i = 0; i <= fileCounter; i++){
 
-      var name = 'pic' + i + '.svg';
+      for(var i = 0; i<8; i++){
+        var svg = document.getElementById('svg' + (7-i));
+        svg.innerHTML = result[result.length-(i+1)]['data'];
+      }
 
-      <img src=name>
 
-    }
+      // animatedly draw the last 8
+      var counter = 0;
+
+      window.setInterval(function(){
+        counter++;
+        var svg = document.getElementById('svg' + counter);
+        svg.innerHTML = result[result.length-(counter)]['data'];
+      }, 1000);
+
+  })
   </script>
-
-
-
 
 
 </body>
