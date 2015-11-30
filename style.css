@@ -1,0 +1,60 @@
+body {
+  position: absolute;
+   /*height: 100%;*/
+  width: 600px;
+  margin-right: auto;
+  font: 14px/24px 'lato', sans-serif;
+}
+svg {
+  margin: auto;
+  border-color: #000;
+  /*background: #fff;*/
+  font: 10px sans-serif;
+  cursor: crosshair;
+  border-style: solid;
+}
+.line {
+  cursor: crosshair;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#svg7, #svg6, #svg5, #svg4, #svg3, #svg2, #svg1, #svg0 {
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  padding: 0;
+  width: inherit;
+}
+.input {
+  display: block;
+}
+.input span {
+  position: absolute;
+  z-index: 1;
+  cursor: text;
+  pointer-events: none;
+  color: #555;
+  /* Input padding + input border */
+  padding: 7px;
+  /* Firefox does not respond well to different line heights. Use padding instead. */
+  line-height: 17px;
+  /* This gives a little gap between the cursor and the label */
+  margin-left: 2px;
+}
+.input input, .input textarea, .input select {
+  z-index: 0;
+  padding: 6px;
+  margin: 0;
+  font: inherit;
+  line-height: 17px;
+	background-color: #181818;
+	color: #999;
+	  border-style: none;
+}
+.input select {
+  padding: 5px;
+  /* Unfortunately selects don't respond well to padding. They need an explicit height. */
+  height: 3px;
+}

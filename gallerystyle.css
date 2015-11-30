@@ -1,0 +1,44 @@
+body {
+    padding: 0;
+    margin: auto;
+    display: block;
+    width: 50%;
+    height: 50%;
+    /*height: 600px;*/
+    /*width: inherit;*/
+    /*height: auto;*/
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-style: solid;
+    border-color: #000;
+    background-color: #fff;
+
+}
+ html{
+   width: 100%;
+   height: 100%;
+ }
+
+div {
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  padding: 0;
+  width: auto;
+  height: auto;
+  /*background-color: #ffffff;*/
+}
+svg {
+  font: 10px sans-serif;
+}
+.line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#svg6 {
+  /*background: #fff;*/
+}
