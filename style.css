@@ -28,7 +28,7 @@ svg {
   z-index: 0;
 }
 
-#svg7, #svg6, #svg5, #svg4, #svg3, #svg2, #svg1, #svg0, #svgBG {
+#svgPast, #svgBG {
   position:absolute;
   top: 0px;
   left: 0px;

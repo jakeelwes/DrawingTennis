@@ -34,60 +34,18 @@
   $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
     console.log("THE SERVER SAYS: ", result)
 
-    var length;
-
-    if(result.length<9){
-      length = result.length;
-    } else {
-      length = 9;
-    }
-
-    // ------------dynamially add elements
-      // for(var i = 1; i<=length; i++){
-      //   var svg = document.createElement('div');
-      //   svg.id = 'svg' + i;
-      //
-      //   var s = document.getElementById('svg' + i);
-      //   svg.innerHTML = result[result.length-i]['data'];
-      // }
-
-      // for(var i = 0; i<length; i++){
-      //   var svg = document.getElementById('svg' + (7-i));
-      //   svg.innerHTML = result[result.length-(i+1)]['data'];
-      // }
-
       // for(var i = 0; i<length; i++){
       //   $("#svg").append("<div>"+result[i]['data']+"</div>")
       // }
 
       var counter = 0;
-      while(counter<result.length){
 
       window.setInterval(function(){
-          counter++;
-          $("#svg").append("<div>"+result[counter]['data']+"</div>");
-
+          if(counter<result.length-1){
+            counter++;
+            $("#svg").append("<div>"+result[counter]['data']+"</div>");
+          }
       }, 1000);
-    }
-
-
-      // -------------animatedly draw the last 8
-      // var counter = 1;
-
-      // window.setInterval(function(){
-      //   counter++;
-      //   var svg = document.getElementById('svg' + (7-(counter-2)));
-      //   svg.innerHTML = result[result.length-(counter)]['data'];
-      // }, 1000);
-
-      // --------------jquery dynamially add elements
-  //     $('#box').append(
-  // $('<div/>')
-  //   .attr("id", "newDiv1")
-  //   .addClass("newDiv purple bloated")
-  //   .append("<span/>")
-  //     .text("hello world")
-  // );
 
   })
   </script>
