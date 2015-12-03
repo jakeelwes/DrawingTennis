@@ -10,7 +10,7 @@ var Finish = function() {
   var svgText = canvas.innerHTML;
   // svgText = svgText.replace(/<g><\/g>/g, "");
   function savedCallback(){
-    window.location.href = "http://jakeelwes.com/drawingtennis/saved.html";
+    window.location.href = "http://jakeelwes.com/DrawingTennis/saved.html";
   }
   function errorCallback(obj) {
     alert("Could not upload. Message: " + obj);
