@@ -35,15 +35,8 @@ var Finish = function() {
 }
 
 $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
-
-  // console.log("THE SERVER SAYS: ", result)
-  // // `result` here is an array of objects.
-  // // result.pop() returns the most recent object.
-  // // result.pop()['data'] is the svg string from that (most recent) object
-  // console.log("number of saved drawings: ", result.length)
-  // console.log("most recent drawing: ", result.pop()['data'])
+  console.log("THE SERVER SAYS: ", result)
   var fileCounter = result.length;
-
   if (fileCounter % 2 == 0) {
     brushCol = '#000000';
   } else if (fileCounter % 2 == 1) {
@@ -53,10 +46,22 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
   console.log(fileCounter);
 
 if(window.innerWidth > window.innerHeight){
-  size = window.innerHeight - 20;
+  size = window.innerHeight;
 } else {
-  size = window.innerWidth - 20;
+  size = window.innerWidth;
 }
+
+$(document).ready(function(){
+  var height = $(window).height();
+  var width = $(window).width();
+  if (height<width){
+    $('body').css('height', height * 0.9);
+    $('body').css('width', height * 0.9);
+  } else {
+    $('body').css('height', width * 0.9);
+    $('body').css('width', width * 0.9);
+  }
+});
 
 var margin = {top: 0, right: 0, bottom: 0, left: 0},
     width = size,
@@ -73,6 +78,8 @@ gui.add(window, 'BrushSize', 0, 100);// or dropdown - { Small: 5, Medium: 40, La
 gui.add(window, 'Transparency', 0, 1);// { "10%": 25, "50%": 127, "100%": 255 } );
 gui.add(window, 'Reset');
 gui.add(window, 'Finish');
+// gui.add(text, 'name');
+// gui.add(text, 'message/comment for next drawing');
 
 
 // var lineCSS = document.querySelector("svg");
@@ -151,7 +158,7 @@ function tick() {
   path.attr("stroke", brushCol)
   path.attr("d", function(d){ return line(d); }) // the path points
   path.attr("stroke-opacity", Transparency);
-  path.attr("stroke-width", Math.pow(BrushSize,2)/10000 * size/3);
+  path.attr("stroke-width", Math.pow(BrushSize,2)/10000 * (width * 0.9)/4);
 }
 
 })

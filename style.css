@@ -1,13 +1,18 @@
 body {
+  padding: 0;
+  margin: auto;
+  display: block;
+  /*width: inherit;*/
   position: absolute;
-   /*height: 100%;*/
-  width: 600px;
-  margin-right: auto;
+  top: 50px;
+  /*bottom: 50px;*/
+  left: 0;
+  right: 0;
   font: 14px/24px 'lato', sans-serif;
 }
 svg {
   margin: auto;
-  border-color: #000;
+  border-color: #fff;
   /*background: #fff;*/
   font: 10px sans-serif;
   cursor: crosshair;
@@ -19,12 +24,16 @@ svg {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+#sketch {
+  z-index: 0;
+}
 
-#svg7, #svg6, #svg5, #svg4, #svg3, #svg2, #svg1, #svg0 {
+#svg7, #svg6, #svg5, #svg4, #svg3, #svg2, #svg1, #svg0, #svgBG {
   position:absolute;
   top: 0px;
   left: 0px;
   padding: 0;
+  z-index: -1;
   width: inherit;
 }
 .input {
