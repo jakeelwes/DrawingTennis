@@ -2,10 +2,7 @@ body {
   padding: 0;
   margin: auto;
   display: block;
-  /*width: inherit;*/
   position: absolute;
-  top: 50px;
-  /*bottom: 50px;*/
   left: 0;
   right: 0;
   font: 14px/24px 'lato', sans-serif;
@@ -13,7 +10,6 @@ body {
 svg {
   margin: auto;
   border-color: #fff;
-  /*background: #fff;*/
   font: 10px sans-serif;
   cursor: crosshair;
   border-style: solid;

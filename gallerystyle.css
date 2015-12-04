@@ -2,10 +2,8 @@ body {
     padding: 0;
     margin: auto;
     display: block;
-    /*width: inherit;*/
+    width: inherit;
     position: absolute;
-    top: 50px;
-    bottom: 50px;
     left: 0;
     right: 0;
     border-style: solid;
@@ -14,23 +12,23 @@ body {
 
 }
 
-div {
+div, img {
   position:absolute;
   top: 0px;
   left: 0px;
   padding: 0;
+  /*z-index: -1;*/
   width: inherit;
-  /*height: auto;*/
-  /*background-color: #ffffff;*/
 }
-svg {
-  font: 10px sans-serif;
-}
+
 .line {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-#svg6 {
-  /*background: #fff;*/
+
+.path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 5s linear forwards;
 }

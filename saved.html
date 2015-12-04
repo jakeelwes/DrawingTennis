@@ -10,45 +10,15 @@
 
   <link rel="stylesheet" type="text/css" href="gallerystyle.css">
 
-
 </head>
 
 <body>
 
 <div id="svgBG"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div>
+<img id="dragicon" src="drag.svg" draggable="false"></img>
 <div id="svg"></div>
 
-  <script>
-  $(document).ready(function(){
-    var height = $(window).height();
-    var width = $(window).width();
-    if (height<width){
-      $('body').css('height', height * 0.9);
-      $('body').css('width', height * 0.9);
-    } else {
-      $('body').css('height', width * 0.9);
-      $('body').css('width', width * 0.9);
-    }
-  });
-
-  $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
-    console.log("THE SERVER SAYS: ", result)
-
-      // for(var i = 0; i<length; i++){
-      //   $("#svg").append("<div>"+result[i]['data']+"</div>")
-      // }
-
-      var counter = 0;
-
-      window.setInterval(function(){
-          if(counter<result.length-1){
-            counter++;
-            $("#svg").append("<div>"+result[counter]['data']+"</div>");
-          }
-      }, 1000);
-
-  })
-  </script>
+<script src="gallery.js"></script>
 
 
 </body>

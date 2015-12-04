@@ -57,9 +57,11 @@ $(document).ready(function(){
   if (height<width){
     $('body').css('height', height * 0.9);
     $('body').css('width', height * 0.9);
+    $('body').css('top', height * 0.05);
   } else {
     $('body').css('height', width * 0.9);
     $('body').css('width', width * 0.9);
+    $('body').css('top', height * 0.05);
   }
 });
 
