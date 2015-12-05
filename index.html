@@ -11,51 +11,38 @@
 
   <script src="js/d3.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="gridstyle.css">
 
 
 </head>
 
 <body bgcolor="#282828">
-<div id="sketch"></div>
-<script src="script.js"></script>
+<div id="fourimg">
+<div id="svgBG1" class="floated_img"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div></td>
+<div id="svgBG2" class="floated_img"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div></td>
+<div id="svgBG3" class="floated_img"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div></td>
+<div id="svgBG4" class="floated_img"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div></td>
+</div>
 
-<div id="svgBG"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div>
-<div id="svgPast"></div>
+  <!-- <div id="svgPast"></div> -->
 
+  <script>
 
-
-<script>
-  $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
-    console.log("THE SERVER SAYS: ", result)
-    var length;
-    if(result.length<9){
-      length = result.length;
-      start = 0;
-    } else {
-      length = result.length;
-      start = result.length - 9;
-    }
-    for(var i = start; i<length; i++){
-      $("#svgPast").append("<div id=\"svgPast\">"+result[i]['data']+"</div>")
-    }
-  })
-</script>
-
-
-
-
-
-<!-- <script src="labelstyle.js"></script>
-
-    <label class="input"><span>Name <i>(optional)</i></span>
-      <input type="text" style="width:400"/>
-    </label>
-
-    <label class="input">
-      <span>Description of drawing and/or suggestions for next contributor <i>(optional)</i></span>
-    <textarea id="comment" style="resize:none; width:400" rows="5"></textarea>
-    </label> -->
+    $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
+      console.log("THE SERVER SAYS: ", result)
+      var length;
+      if(result.length<9){
+        length = result.length;
+        start = 0;
+      } else {
+        length = result.length;
+        start = result.length - 9;
+      }
+      for(var i = start; i<length; i++){
+        $("#svgBG1").append("<div id=\"svgPast\">"+result[i]['data']+"</div>")
+      }
+    })
+  </script>
 
 </body>
 </html>
