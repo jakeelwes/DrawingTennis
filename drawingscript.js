@@ -3,6 +3,9 @@ var Transparency = 1;
 var Reset = function() {
   window.location.reload();
 }
+var Undo = function() {
+  $("#sketch svg path").last().remove();
+}
 if(window.location.hash) {
   var hash = window.location.hash.substring(1);
 } else {
@@ -92,6 +95,7 @@ var gui = new dat.GUI();
 gui.add(window, 'BrushSize', 0, 100);// or dropdown - { Small: 5, Medium: 40, Large: 100 } );
 gui.add(window, 'Transparency', 0, 1);// { "10%": 25, "50%": 127, "100%": 255 } );
 gui.add(window, 'Reset');
+gui.add(window, 'Undo');
 gui.add(window, 'Finish');
 // gui.add(text, 'name');
 // gui.add(text, 'message/comment for next drawing');

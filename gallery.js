@@ -28,14 +28,17 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
       }
     }
     console.log(indexNum);
+    var c = 0;
 
   for(var i = 0; i < result.length; i++){
     if(result[i]['index'] == hash){
       var $newDiv = $("<div>"+result[i]['data']+"</div>");
-      $newDiv.attr("id", "svg" + i);
+      $newDiv.attr("id", "svg" + c);
+      $newDiv.attr("class", "no" + i);
       $newDiv.css('visibility', 'hidden');
       $("#svg").append($newDiv);
         // $("#svgPast").prepend("<div id=\"svgPast\">"+result[i]['data']+"</div>")
+      c++;
     }
   }
 
@@ -46,7 +49,9 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
     $(document).on('mousemove', function(e){
         $("#dragicon").css('visibility', 'hidden');
         var xpos = e.pageX - $('#svgBG').offset().left;
-        var imgNum = Math.max(0, Math.min(Math.round(xpos/imgStrips), result.length));
+        var imgNum = Math.max(0, Math.min(Math.round(xpos/imgStrips), indexNum));
+
+        // console.log(imgNum);
 
         for(var i = 0; i <= imgNum; i++){
           $("#svg" + i).css('visibility', 'visible');
