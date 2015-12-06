@@ -3,6 +3,16 @@ var Transparency = 1;
 var Reset = function() {
   window.location.reload();
 }
+if(window.location.hash) {
+  var hash = window.location.hash.substring(1);
+} else {
+  var hash = 'a';
+}
+// if(hash !== /[a|b|c|d]/){
+//   console.log("error");
+// }
+
+console.log(hash);
 
 var Finish = function() {
 
@@ -10,15 +20,15 @@ var Finish = function() {
   var svgText = canvas.innerHTML;
   // svgText = svgText.replace(/<g><\/g>/g, "");
   function savedCallback(){
-    window.location.href = "http://jakeelwes.com/DrawingTennis/saved.html";
+    window.location.href = "saved.html#" + hash;
   }
   function errorCallback(obj) {
     alert("Could not upload. Message: " + obj);
     console.log(obj)
   }
-
   var d = new Date();
-  var svgJSON = JSON.stringify({'date': d,'data': svgText})
+
+  var svgJSON = JSON.stringify({'date': d, 'index': hash, 'data': svgText})
   console.log(svgJSON);
 
   $.ajax({
@@ -35,9 +45,12 @@ var Finish = function() {
 }
 
 $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
-  console.log("THE SERVER SAYS: ", result)
-  var fileCounter = result.length;
-  if (fileCounter % 2 == 0) {
+  var fileCounter = 0;
+  for(var i = 0; i<result.length; i++){
+    if(result[i]['index'] == hash){
+      fileCounter++;
+    }
+  }  if (fileCounter % 2 == 0) {
     brushCol = '#000000';
   } else if (fileCounter % 2 == 1) {
     brushCol = '#ffffff';
@@ -160,7 +173,8 @@ function tick() {
   path.attr("stroke", brushCol)
   path.attr("d", function(d){ return line(d); }) // the path points
   path.attr("stroke-opacity", Transparency);
-  path.attr("stroke-width", Math.pow(BrushSize,2)/10000 * (width * 0.9)/4);
+  path.attr("stroke-width", ((Math.pow(BrushSize,2))/10000) * $("body").width()/14);
 }
+console.log($("body").width());
 
 })

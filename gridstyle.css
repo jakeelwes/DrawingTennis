@@ -4,13 +4,12 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-
-margin-left:auto;
-margin-right:auto;
+  margin-left:auto;
+  margin-right:auto;
   font: 14px/24px 'lato', sans-serif;
-      vertical-align: baseline;
-      width: 800px;
-      height: 800px;
+  vertical-align: baseline;
+  width: 800px;
+  height: 800px;
 }
 
 #fourimg {
@@ -20,15 +19,40 @@ margin-right:auto;
   padding: 0;
   /*margin: auto;*/
   /*position: absolute;*/
+}
 
+#svgPast {
+    position: absolute;
+}
 
+#holder1,#holder2,#holder3,#holder4 {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  border-style: solid;
+  border-color: #000;
+  border-width: 5px;
 }
 
 .floated_img
 {
   float: left;
-  padding-right: 20px;
+  padding-left: 20px;
   padding-top: 20px;
   width: 40%;
   height:40%;
+
+
+}
+
+.line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 5s linear forwards;
 }

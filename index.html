@@ -18,10 +18,20 @@
 
 <body bgcolor="#282828">
 <div id="fourimg">
+<a href="drawing.html#a">
 <div id="svgBG1" class="floated_img"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div></td>
+</a>
+<a href="drawing.html#b">
 <div id="svgBG2" class="floated_img"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div></td>
+</a>
+<a href="drawing.html#c">
 <div id="svgBG3" class="floated_img"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div></td>
+</a>
+<a href="drawing.html#d">
 <div id="svgBG4" class="floated_img"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div></td>
+</a>
+
+DrawingTennis pick a drawing to add to (the border indicates which color)
 </div>
 
   <!-- <div id="svgPast"></div> -->
@@ -30,18 +40,44 @@
 
     $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
       console.log("THE SERVER SAYS: ", result)
-      var length;
-      if(result.length<9){
-        length = result.length;
-        start = 0;
-      } else {
-        length = result.length;
-        start = result.length - 9;
+
+      var aNum = 0;
+      $("#svgBG1").prepend("<div id=\"holder1\" />");
+      for(var i = 0; i<result.length; i++){
+        if(result[i]['index'] == 'a'){
+          $("#holder1").append("<div id=\"svgPast\">"+result[i]['data']+"</div>")
+          aNum++;
+        }
       }
-      for(var i = start; i<length; i++){
-        $("#svgBG1").append("<div id=\"svgPast\">"+result[i]['data']+"</div>")
+      var bNum = 0;
+      $("#svgBG2").prepend("<div id=\"holder2\" />");
+      for(var i = 0; i<result.length; i++){
+        if(result[i]['index'] == 'b'){
+          $("#holder2").append("<div id=\"svgPast\">"+result[i]['data']+"</div>")
+          bNum++;
+        }
       }
+      var cNum = 0;
+      $("#svgBG3").prepend("<div id=\"holder3\" />");
+      for(var i = 0; i<result.length; i++){
+        if(result[i]['index'] == 'c'){
+          $("#holder3").append("<div id=\"svgPast\">"+result[i]['data']+"</div>")
+          cNum++;
+        }
+      }
+      var dNum = 0;
+      $("#svgBG4").prepend("<div id=\"holder4\" />");
+      for(var i = 0; i<result.length; i++){
+        if(result[i]['index'] == 'd'){
+          $("#holder4").append("<div id=\"svgPast\">"+result[i]['data']+"</div>")
+          dNum++;
+        }
+      }
+
+      console.log('a:'+aNum+', b:'+bNum+', c:'+cNum+', d:'+dNum);
+
     })
+
   </script>
 
 </body>

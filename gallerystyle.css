@@ -12,6 +12,11 @@ body {
 
 }
 
+/*#link {
+  float: right;
+
+}*/
+
 div, img {
   position:absolute;
   top: 0px;

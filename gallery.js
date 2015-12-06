@@ -15,20 +15,33 @@ $(document).ready(function(){
 $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
   console.log("THE SERVER SAYS: ", result)
 
-  // for(var i = 0; i < result.length-1; i++){
-  //   $("#svg").append("<div id="i"></div>");
-  // }
+    if(window.location.hash) {
+      var hash = window.location.hash.substring(1);
+    } else {
+      var hash = 'a';
+    }
 
-  for(var i = 0; i <= result.length-1; i++){
-    var $newDiv = $("<div>"+result[i]['data']+"</div>");
-    $newDiv.attr("id", "svg" + i);
-    $newDiv.css('visibility', 'hidden');
-    $("#svg").append($newDiv);
+    var indexNum = 0;
+    for(var i = 0; i<result.length; i++){
+      if(result[i]['index'] == hash){
+        indexNum++;
+      }
+    }
+    console.log(indexNum);
+
+  for(var i = 0; i < result.length; i++){
+    if(result[i]['index'] == hash){
+      var $newDiv = $("<div>"+result[i]['data']+"</div>");
+      $newDiv.attr("id", "svg" + i);
+      $newDiv.css('visibility', 'hidden');
+      $("#svg").append($newDiv);
+        // $("#svgPast").prepend("<div id=\"svgPast\">"+result[i]['data']+"</div>")
+    }
   }
 
     var offset = $('#svgBG').offset();
     var bgWidth = $('#svgBG').width();
-    var imgStrips = bgWidth/result.length;
+    var imgStrips = bgWidth/indexNum;
 
     $(document).on('mousemove', function(e){
         $("#dragicon").css('visibility', 'hidden');
@@ -41,16 +54,5 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
         for(var i = imgNum; i <= result.length; i++){
           $("#svg" + i).css('visibility', 'hidden');
         }
-        // console.log(imgNum);
     });
-    // var counter = 0;
-    //
-    // window.setInterval(function(){
-    //     if(counter<result.length){
-    //       var $newDiv = $("<div>"+result[counter]['data']+"</div>");
-    //       $newDiv.attr("id", "svg" + counter);
-    //       $("#svg").append($newDiv);
-    //       counter++;
-    //     }
-    // }, 10);
 })
