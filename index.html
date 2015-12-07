@@ -11,7 +11,7 @@
 
   <script src="js/d3.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="gridstyle.css">
+  <link rel="stylesheet" type="text/css" href="css/gridstyle.css">
 
 
 </head>
@@ -20,7 +20,8 @@
 
   <div id="instructions">
   <l>DrawingTennis - pick a drawing to add to.</l>
-  <br> You'll be drawing in the opposite colour to the last player, the border indicates the next colour. Works best in Google Chrome.
+  <br> You'll be drawing in the opposite colour to the last player, the border indicates the next colour. Works best in Google Chrome. <br>Jake Elwes 2015
+  <a href="https://github.com/jakeelwes/DrawingTennis">Source code</a>
   </div>
 
 <div id="fourimg">
@@ -48,13 +49,14 @@
     if (height<width){
       $('#fourimg').css('height', height * 0.9);
       $('#fourimg').css('width', height * 0.9);
-      $('#fourimg').css('top', height * 0.1);
+      $('#fourimg').css('top', $("#instructions").height() + 10);
     } else {
       $('#fourimg').css('height', width * 0.9);
       $('#fourimg').css('width', width * 0.9);
-      $('#fourimg').css('top', width * 0.1);
+      $('#fourimg').css('top', $("#instructions").height() + 10);
     }
   });
+
     $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
       console.log("THE SERVER SAYS: ", result)
 

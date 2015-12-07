@@ -24,7 +24,7 @@ border-style:solid;
 border-color:rgba(0,0,0,0);
 letter-spacing:1pt;
 word-spacing:3pt;
-font-size:14px;
+font-size:15px;
 text-align:left;
 font-family:helvetica, sans-serif;
 line-height:1;
@@ -32,15 +32,15 @@ line-height:1;
 
 #name {
   background-color: rgba(0,0,0,0);
-  color:rgba(180,180,180,0.5);
+  color:rgba(180,180,180,0.8);
   text-align: right;
   display: table-cell;
    vertical-align: bottom;
    position: relative;
    height: inherit;
    width: inherit;
-   /*-webkit-text-stroke-width: 2px;
-   -webkit-text-stroke-color: rgba(255,255,255,0.5);*/
+   -webkit-text-stroke-width: 2px;
+   -webkit-text-stroke-color: rgba(255,255,255,0.1);
 }
 
 #break {
