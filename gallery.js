@@ -10,6 +10,10 @@ $(document).ready(function(){
     $('body').css('width', width * 0.9);
     $('body').css('top', width * 0.05);
   }
+  $("#dragicon").css('opacity', '0');
+  $("#name").css('opacity', '0');
+  $("#break").css('opacity', '0');
+
 });
 
 $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
@@ -38,7 +42,7 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
       var $newDiv = $("<div>"+result[i]['data']+"</div>");
       $newDiv.attr("id", "svg" + c);
       $newDiv.attr("class", "no" + i);
-      $newDiv.css('visibility', 'hidden');
+      $newDiv.css('opacity', '0');
       $("#svg").append($newDiv);
       names.push(result[i]['name']);
       dates.push(result[i]['formattedDate']);
@@ -48,27 +52,38 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
   }
   console.log(dates);
 
+  $('#preloader').fadeOut('slow', function() {
+    $(this).remove();
+    $("#dragicon").css('opacity', '1');
+    $("#name").css('opacity', '1');
+    $("#break").css('opacity', '1');
+  });
+
     var offset = $('#svgBG').offset();
     var bgWidth = $('#svgBG').width();
     var imgStrips = bgWidth/indexNum;
     var brk = false;
 
     $(document).on('mousemove', function(e){
-        $("#dragicon").css('visibility', 'hidden');
+        $("#dragicon").fadeOut();
         var xpos = e.pageX - $('#svgBG').offset().left;
         var imgNum = Math.max(0, Math.min(Math.round(xpos/imgStrips), indexNum));
 
         // console.log(imgNum);
         if(!brk){
           for(var i = 0; i <= imgNum; i++){
-            $("#svg" + i).css('visibility', 'visible');
+            $("#svg" + i).css('opacity', '1');
+            // fade_in($("#svg" + i));
+            // $("#svg" + i).fadeIn();
           }
           for(var i = imgNum; i <= c; i++){
-            $("#svg" + i).css('visibility', 'hidden');
+            $("#svg" + i).css('opacity', '0');
+            // $("#svg" + i).fadeOut();
+
           }
         }
 
-        if((names[imgNum - 1] == undefined) && (dates[imgNum - 1] == undefined)){
+        if((dates[imgNum - 1] == undefined) && (names[imgNum - 1] == undefined)){
           $("#name").text("  ");
         }
         if(names[imgNum - 1] == undefined){
@@ -79,7 +94,6 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
           $("#name").text("drawn by " + names[imgNum - 1]  +"\ " + dates[imgNum - 1]);
         }
     });
-
 
 
     $("#break").click(function(){

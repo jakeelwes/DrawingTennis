@@ -1,3 +1,16 @@
+$(document).ready(function(){
+  var height = $(window).height();
+  var width = $(window).width();
+  if (height<width){
+    $('body').css('height', height * 0.9);
+    $('body').css('width', height * 0.9);
+    $('body').css('top', height * 0.05);
+  } else {
+    $('body').css('height', width * 0.9);
+    $('body').css('width', width * 0.9);
+    $('body').css('top', height * 0.05);
+  }
+});
 
 var BrushSize = 20;
 var Transparency = 1;
@@ -72,19 +85,7 @@ if(window.innerWidth > window.innerHeight){
   size = window.innerWidth;
 }
 
-$(document).ready(function(){
-  var height = $(window).height();
-  var width = $(window).width();
-  if (height<width){
-    $('body').css('height', height * 0.9);
-    $('body').css('width', height * 0.9);
-    $('body').css('top', height * 0.05);
-  } else {
-    $('body').css('height', width * 0.9);
-    $('body').css('width', width * 0.9);
-    $('body').css('top', height * 0.05);
-  }
-});
+
 
 var margin = {top: 0, right: 0, bottom: 0, left: 0},
     width = size,

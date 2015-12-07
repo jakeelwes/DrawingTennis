@@ -1,5 +1,6 @@
 <html>
 <head>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
   <!-- for iphone check doc https://github.com/processing/p5.js/issues/350 -->
   <title>DrawingTennis</title>
@@ -18,14 +19,16 @@
 </head>
 
 <body>
+  <div id="preloader"><img src="loader.gif" width="100%"/></div>
+
 <div id="sketch"></div>
 <script src="drawingscript.js"></script>
-
 <div id="svgBG"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div>
 <div id="svgPast"></div>
 
 
 <script>
+  $("#svgBG svg").css('opacity', '0');
   $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
     if(window.location.hash) {
       var hash = window.location.hash.substring(1);
@@ -53,23 +56,15 @@
           $("#svgPast").append("<div id=\"svgPast\">"+result[i]['data']+"</div>") //prepend?
       }
     }
+
+    $("#svgBG svg").css('opacity', '1');
+    $('#preloader').fadeOut( function(){
+      $(this).remove();
+    });
+
   })
+
 </script>
-
-
-
-
-
-<!-- <script src="labelstyle.js"></script>
-
-    <label class="input"><span>Name <i>(optional)</i></span>
-      <input type="text" style="width:400"/>
-    </label>
-
-    <label class="input">
-      <span>Description of drawing and/or suggestions for next contributor <i>(optional)</i></span>
-    <textarea id="comment" style="resize:none; width:400" rows="5"></textarea>
-    </label> -->
 
 </body>
 </html>
