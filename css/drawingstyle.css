@@ -1,6 +1,7 @@
 body {
   padding: 0;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   display: block;
   position: absolute;
   left: 0;
@@ -18,6 +19,15 @@ svg {
   border-style: solid;
   width:auto;
 }
+
+#preloader {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  margin-right: auto;
+
+}
+
 .line {
   cursor: crosshair;
   fill: none;

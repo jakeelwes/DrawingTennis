@@ -12,7 +12,16 @@ body {
     background: radial-gradient(circle, lightgray 60%, black 130%);
 
 }
-
+.js div#preloader {
+  position: relative;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: no-repeat center center;
+}
 
 #link, #name
 {

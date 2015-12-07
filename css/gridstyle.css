@@ -20,6 +20,16 @@ a:link, a {
 a:hover {
     color: hotpink;
 }
+.js div#preloader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  width: 40%;
+  height: 40%;
+  overflow: visible;
+  /*background: no-repeat center center;*/
+}
 
 #fourimg {
   padding: 0;
@@ -76,7 +86,7 @@ line-height:1.5;
 }
 
 #holder1:hover,#holder2:hover,#holder3:hover,#holder4:hover {
-  border-width: 8px;
+  border-width: 9px;
 }
 
 
