@@ -12,6 +12,14 @@ body {
   background: #444;
   background: radial-gradient(circle, gray 20%, black 100%);
 }
+a:link, a {
+    text-decoration: none;
+    color: #ccc;
+
+}
+a:hover {
+    color: hotpink;
+}
 
 #fourimg {
   padding: 0;
