@@ -96,15 +96,7 @@ var path;
 var drawing = false;
 
 
-var gui = new dat.GUI();
-gui.add(window, 'BrushSize', 0, 100);// or dropdown - { Small: 5, Medium: 40, Large: 100 } );
-gui.add(window, 'Transparency', 0, 1);// { "10%": 25, "50%": 127, "100%": 255 } );
-gui.add(window, 'Reset');
-gui.add(window, 'Undo')
-gui.add(window, 'name');
-gui.add(window, 'Finish');
-// gui.add(text, 'name');
-// gui.add(text, 'message/comment for next drawing');
+
 
 
 // var lineCSS = document.querySelector("svg");
@@ -186,4 +178,14 @@ function tick() {
   path.attr("stroke-width", ((Math.pow(BrushSize,2))/10000) * $("body").width()/14);
 }
 // console.log($("body").width());
+
+var gui = new dat.GUI();
+gui.add(window, 'BrushSize', 0, 100);// or dropdown - { Small: 5, Medium: 40, Large: 100 } );
+gui.add(window, 'Transparency', 0, 1);// { "10%": 25, "50%": 127, "100%": 255 } );
+gui.add(window, 'Reset');
+gui.add(window, 'Undo')
+gui.add(window, 'name');
+gui.add(window, 'Finish');
+// gui.add(text, 'name');
+// gui.add(text, 'message/comment for next drawing');
 })
