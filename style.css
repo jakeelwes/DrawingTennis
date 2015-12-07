@@ -6,6 +6,8 @@ body {
   left: 0;
   right: 0;
   font: 14px/24px 'lato', sans-serif;
+  background: #282828;
+  background: radial-gradient(circle, #888 50%, black 110%);
 }
 svg {
   margin: auto;
@@ -13,6 +15,7 @@ svg {
   font: 10px sans-serif;
   cursor: crosshair;
   border-style: solid;
+  width:auto;
 }
 .line {
   cursor: crosshair;

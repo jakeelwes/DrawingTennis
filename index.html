@@ -16,7 +16,13 @@
 
 </head>
 
-<body bgcolor="#282828">
+<body>
+
+  <div id="instructions">
+  <l>DrawingTennis - pick a drawing to add to.</l>
+  <br> You'll be drawing in the opposite colour to the last player, the border indicates the next colour. Works best in Google Chrome.
+  </div>
+
 <div id="fourimg">
 <a href="drawing.html#a">
 <div id="svgBG1" class="floated_img"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div></td>
@@ -31,13 +37,24 @@
 <div id="svgBG4" class="floated_img"><svg width="100%" height="100%" viewBox="0, 0, 100, 100"><rect width="100" height="100" style="fill:rgb(255,255,255)" /></svg></div></td>
 </a>
 
-DrawingTennis pick a drawing to add to (the border indicates which color)
 </div>
 
   <!-- <div id="svgPast"></div> -->
 
   <script>
-
+  $(document).ready(function(){
+    var height = $(window).height();
+    var width = $(window).width();
+    if (height<width){
+      $('#fourimg').css('height', height * 0.9);
+      $('#fourimg').css('width', height * 0.9);
+      $('#fourimg').css('top', height * 0.1);
+    } else {
+      $('#fourimg').css('height', width * 0.9);
+      $('#fourimg').css('width', width * 0.9);
+      $('#fourimg').css('top', width * 0.1);
+    }
+  });
     $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
       console.log("THE SERVER SAYS: ", result)
 
@@ -73,6 +90,22 @@ DrawingTennis pick a drawing to add to (the border indicates which color)
           dNum++;
         }
       }
+
+      function bgcol(num){
+        var bg;
+        if(num%2){
+          bg = '#fff'
+        } else {
+          bg = '#000'
+        }
+        return bg;
+      }
+
+      $("#holder1").css('border-color', bgcol(aNum));
+      $("#holder2").css('border-color', bgcol(bNum));
+      $("#holder3").css('border-color', bgcol(cNum));
+      $("#holder4").css('border-color', bgcol(dNum));
+
 
       console.log('a:'+aNum+', b:'+bNum+', c:'+cNum+', d:'+dNum);
 

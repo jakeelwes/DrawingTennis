@@ -9,8 +9,52 @@ body {
     border-style: solid;
     border-color: #fff;
     background-color: #777;
+    background: radial-gradient(circle, lightgray 60%, black 130%);
 
 }
+
+
+#link
+{
+font-weight:normal;
+color:#fff;
+background-color:rgba(0,0,0, 0.3);
+border: 5px;
+border-style:solid;
+border-color:rgba(0,0,0,0);
+letter-spacing:1pt;
+word-spacing:3pt;
+font-size:14px;
+text-align:left;
+font-family:helvetica, sans-serif;
+line-height:1;
+}
+
+#break {
+position: relative;
+/*width: 100px;*/
+/*align-items: stretch;*/
+  line-height: (2*height - font-size);
+
+  text-align: right;
+  color:rgba(120,120,120,0.5);
+  padding-top: 5px;
+  font-family:helvetica, sans-serif;
+  letter-spacing:1pt;
+  word-spacing:3pt;
+  font-size:12px;
+  cursor: help;
+  bottom: 0;
+
+}
+
+#break span{
+  float: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 
 div, img {
   position:absolute;

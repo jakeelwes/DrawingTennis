@@ -60,4 +60,12 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
           $("#svg" + i).css('visibility', 'hidden');
         }
     });
+
+    $("#break").click(function(){
+        $("div").css('position', 'relative');
+        $("div").css('width', '80%');
+        $("div").css('padding', '0');
+
+    });
+
 })

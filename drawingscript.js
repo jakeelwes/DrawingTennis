@@ -16,6 +16,8 @@ if(window.location.hash) {
 // }
 
 console.log(hash);
+var dLocal = new Date();
+var d = Date.now();
 
 var Finish = function() {
 
@@ -31,8 +33,9 @@ var Finish = function() {
   }
   var d = new Date();
 
+  console.log(d);
+
   var svgJSON = JSON.stringify({'date': d, 'index': hash, 'data': svgText})
-  console.log(svgJSON);
 
   $.ajax({
       url: 'http://drawingtennis.herokuapp.com/save',
@@ -179,6 +182,6 @@ function tick() {
   path.attr("stroke-opacity", Transparency);
   path.attr("stroke-width", ((Math.pow(BrushSize,2))/10000) * $("body").width()/14);
 }
-console.log($("body").width());
+// console.log($("body").width());
 
 })
