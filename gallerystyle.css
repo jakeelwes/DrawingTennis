@@ -14,11 +14,11 @@ body {
 }
 
 
-#link
+#link, #name
 {
-font-weight:normal;
-color:#fff;
-background-color:rgba(0,0,0, 0.3);
+font-weight:lighter;
+color:#bbb;
+background-color:rgba(0,0,0, 0.1);
 border: 5px;
 border-style:solid;
 border-color:rgba(0,0,0,0);
@@ -30,22 +30,31 @@ font-family:helvetica, sans-serif;
 line-height:1;
 }
 
+#name {
+  background-color: rgba(0,0,0,0);
+  color:rgba(180,180,180,0.5);
+  text-align: right;
+  display: table-cell;
+   vertical-align: bottom;
+   position: relative;
+   height: inherit;
+   width: inherit;
+   /*-webkit-text-stroke-width: 2px;
+   -webkit-text-stroke-color: rgba(255,255,255,0.5);*/
+}
+
 #break {
-position: relative;
-/*width: 100px;*/
-/*align-items: stretch;*/
+
   line-height: (2*height - font-size);
 
   text-align: right;
-  color:rgba(120,120,120,0.5);
+  color:rgba(120,120,120,0.1);
   padding-top: 5px;
   font-family:helvetica, sans-serif;
   letter-spacing:1pt;
   word-spacing:3pt;
   font-size:12px;
   cursor: help;
-  bottom: 0;
-
 }
 
 #break span{

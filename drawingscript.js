@@ -1,3 +1,4 @@
+
 var BrushSize = 20;
 var Transparency = 1;
 var Reset = function() {
@@ -6,6 +7,7 @@ var Reset = function() {
 var Undo = function() {
   $("#sketch svg path").last().remove();
 }
+
 if(window.location.hash) {
   var hash = window.location.hash.substring(1);
 } else {
@@ -16,8 +18,6 @@ if(window.location.hash) {
 // }
 
 console.log(hash);
-var dLocal = new Date();
-var d = Date.now();
 
 var Finish = function() {
 
@@ -31,11 +31,13 @@ var Finish = function() {
     alert("Could not upload. Message: " + obj);
     console.log(obj)
   }
-  var d = new Date();
+  var d = Date.now(); //or new Date()
+  var date = new Date();
+  var formattedDate = moment(date).format('Do MMMM YYYY, h:mm a');
 
   console.log(d);
 
-  var svgJSON = JSON.stringify({'date': d, 'index': hash, 'data': svgText})
+  var svgJSON = JSON.stringify({'date': d, 'formattedDate': formattedDate, 'name': name, 'index': hash, 'data': svgText})
 
   $.ajax({
       url: 'http://drawingtennis.herokuapp.com/save',
@@ -98,7 +100,8 @@ var gui = new dat.GUI();
 gui.add(window, 'BrushSize', 0, 100);// or dropdown - { Small: 5, Medium: 40, Large: 100 } );
 gui.add(window, 'Transparency', 0, 1);// { "10%": 25, "50%": 127, "100%": 255 } );
 gui.add(window, 'Reset');
-gui.add(window, 'Undo');
+gui.add(window, 'Undo')
+gui.add(window, 'name');
 gui.add(window, 'Finish');
 // gui.add(text, 'name');
 // gui.add(text, 'message/comment for next drawing');
@@ -183,5 +186,4 @@ function tick() {
   path.attr("stroke-width", ((Math.pow(BrushSize,2))/10000) * $("body").width()/14);
 }
 // console.log($("body").width());
-
 })
