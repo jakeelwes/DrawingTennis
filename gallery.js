@@ -72,7 +72,7 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
           $("#name").text("  ");
         }
         if(names[imgNum - 1] == undefined){
-          $("#name").text("drawn on " + dates[imgNum - 1].toString());
+          $("#name").text("drawn on " + dates[imgNum - 1]);
         } else if(dates[imgNum - 1] == undefined){
           $("#name").text("drawn by " + names[imgNum - 1]);
         } else {
