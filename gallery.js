@@ -102,6 +102,7 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
         $(".pastSVG").css('opacity', '1');
         $("#svgBG").css('visibility', 'hidden');
         $(".pastSVG").css('position', 'relative');
+        $("body").css('border-style', 'none');
         // $(".pastSVG").css('height', '500');
 
           $( ".pastSVG" ).animate({
@@ -113,6 +114,7 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
             $("#svgBG").css('visibility', 'visible');
             $(".pastSVG").css('position', 'absolute');
             $(".pastSVG").css('top', '0');
+            $("body").css('border-style', 'solid');
           });
     });
 
