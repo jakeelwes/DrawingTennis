@@ -41,7 +41,8 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
     if(result[i]['index'] == hash){
       var $newDiv = $("<div>"+result[i]['data']+"</div>");
       $newDiv.attr("id", "svg" + c);
-      $newDiv.attr("class", "no" + i);
+      // $newDiv.attr("class", "no" + i);
+      $newDiv.attr("class", "pastSVG");
       $newDiv.css('opacity', '0');
       $("#svg").append($newDiv);
       names.push(result[i]['name']);
@@ -98,11 +99,21 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
 
     $("#break").click(function(){
         brk = true;
-        $("div").css('position', 'relative');
-        $("div").css('float', 'left');
-        $("div").css('width', '80%');
-        $("div").css('visibility', 'visible');
+        $(".pastSVG").css('opacity', '1');
+        $("#svgBG").css('visibility', 'hidden');
+        $(".pastSVG").css('position', 'relative');
+        // $(".pastSVG").css('height', '500');
 
+          $( ".pastSVG" ).animate({
+            // opacity: 0.25,
+            top: "-=5000",
+            // left: "toggle"
+          }, indexNum*1000, "linear", function() {
+            brk = false;
+            $("#svgBG").css('visibility', 'visible');
+            $(".pastSVG").css('position', 'absolute');
+            $(".pastSVG").css('top', '0');
+          });
     });
 
 })
