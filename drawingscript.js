@@ -144,7 +144,7 @@ svg
   .on("touchleave", ignore)
   .on("mouseup", ignore)
   .on("mouseleave", ignore);
-document.ontouchmove = function(e){ e.preventDefault(); }
+document.ontouchmove = function(e){if (event.targetTouches.length == 1) {e.preventDefault();} }
 
 
 function listen () {
@@ -178,7 +178,9 @@ function onmove (e) {
     point = d3.mouse(this);
   } else {
     // only deal with a single touch input
-    point = d3.touches(this)[0];
+    if (event.targetTouches.length == 1) {
+      point = d3.touches(this)[0];
+    }
   }
   // push a new data point onto the back
   ptdata.push({ x: point[0], y: point[1] });
