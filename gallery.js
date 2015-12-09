@@ -65,9 +65,45 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
     var imgStrips = bgWidth/indexNum;
     var brk = false;
 
+    // document.ontouchmove = function(e){ e.preventDefault(); }
+
     $(document).on('mousemove', function(e){
         $("#dragicon").fadeOut();
         var xpos = e.pageX - $('#svgBG').offset().left;
+        var imgNum = Math.max(0, Math.min(Math.round(xpos/imgStrips), indexNum));
+
+        // console.log(imgNum);
+        if(!brk){
+          for(var i = 0; i <= imgNum; i++){
+            $("#svg" + i).css('opacity', '1');
+            // $("#svg" + i).fadeIn();
+            // $("#svg" + i).animate({
+            //   opacity: 1
+            // }, 100, "linear");
+          }
+          for(var i = imgNum; i <= c; i++){
+            $("#svg" + i).css('opacity', '0');
+            // $("#svg" + i).fadeOut();
+          }
+        }
+
+        if((dates[imgNum - 1] == undefined) && (names[imgNum - 1] == undefined)){
+          $("#name").text("  ");
+        }
+        // else if(names[imgNum - 1] == undefined){
+        //   $("#name").text("drawn on " + dates[imgNum - 1]);
+        // }
+        // else if(dates[imgNum - 1] == undefined){
+        //   $("#name").text("drawn by " + names[imgNum - 1]);
+        // }
+        else {
+          $("#name").text(names[imgNum - 1] + " " + dates[imgNum - 1]);
+        }
+    });
+
+    $(document).on('touchmove', function(e) {
+        $("#dragicon").fadeOut();
+        var xpos = e.originalEvent.touches[0].pageX - $('#svgBG').offset().left;
         var imgNum = Math.max(0, Math.min(Math.round(xpos/imgStrips), indexNum));
 
         // console.log(imgNum);
@@ -80,19 +116,14 @@ $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
           for(var i = imgNum; i <= c; i++){
             $("#svg" + i).css('opacity', '0');
             // $("#svg" + i).fadeOut();
-
           }
         }
 
         if((dates[imgNum - 1] == undefined) && (names[imgNum - 1] == undefined)){
           $("#name").text("  ");
         }
-        if(names[imgNum - 1] == undefined){
-          $("#name").text("drawn on " + dates[imgNum - 1]);
-        } else if(dates[imgNum - 1] == undefined){
-          $("#name").text("drawn by " + names[imgNum - 1]);
-        } else {
-          $("#name").text("drawn by " + names[imgNum - 1]  +"\ " + dates[imgNum - 1]);
+        else {
+          $("#name").text(names[imgNum - 1] + " " + dates[imgNum - 1]);
         }
     });
 

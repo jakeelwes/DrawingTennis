@@ -12,6 +12,11 @@ $(document).ready(function(){
   }
 });
 
+/Mobile/.test(navigator.userAgent) && !location.hash && setTimeout(function () {
+    // $("html").css("height", +=1);
+    if (!pageYOffset) window.scrollTo(0, 1);
+}, 1000);
+
 var BrushSize = 20;
 var Transparency = 1;
 var Reset = function() {
@@ -106,6 +111,12 @@ gui.add(window, 'name');
 gui.add(window, 'Finish');
 // gui.add(text, 'name');
 // gui.add(text, 'message/comment for next drawing');
+// gui.on("touchend", listen); //solve GUI touch problem but drawing won't now respond
+// $(".main").getChildren().on("touchend", 'listen');
+// $(".main").getChildren().css("opacity", '0');
+
+
+// $('body').on("touchend", ignore);
 
 
 // var lineCSS = document.querySelector("svg");
@@ -129,17 +140,11 @@ svg.append("g")
 svg
   .on("mousedown", listen)
   .on("touchstart", listen)
-  .on("touchend", ignore)
+  .on("touchend", listen)
   .on("touchleave", ignore)
   .on("mouseup", ignore)
   .on("mouseleave", ignore);
-// ignore default touch behavior
-var touchEvents = ['touchstart', 'touchmove', 'touchend'];
-touchEvents.forEach(function (eventName) {
-  document.body.addEventListener(eventName, function(e){
-    e.preventDefault();
-  });
-});
+document.ontouchmove = function(e){ e.preventDefault(); }
 
 
 function listen () {
@@ -187,6 +192,5 @@ function tick() {
   path.attr("stroke-width", ((Math.pow(BrushSize,2))/10000) * $("body").width()/14);
 }
 // console.log($("body").width());
-
 
 })
