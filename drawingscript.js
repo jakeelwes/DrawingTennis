@@ -59,7 +59,7 @@ var Finish = function() {
   var country = response.country;
 
   var svgJSON = JSON.stringify({
-        'date': d,
+        // 'date': d,
         'formattedDate': formattedDate + ", " + city + " " + country,
         'name': name,
         'index': hash,
