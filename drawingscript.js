@@ -129,16 +129,16 @@ svg.append("g")
 svg
   .on("mousedown", listen)
   .on("touchstart", listen)
-  .on("touchend", ignore)
-  .on("touchleave", ignore)
+  .on("touchend", listen)
+  .on("touchleave", listen)
   .on("mouseup", ignore)
   .on("mouseleave", ignore);
 // ignore default touch behavior
-var touchEvents = ['touchstart', 'touchmove', 'touchend'];
-touchEvents.forEach(function (eventName) {
-  document.body.addEventListener(eventName, function(e){
-    e.preventDefault();
-  });
+// var touchEvents = ['touchstart', 'touchmove', 'touchend'];
+// touchEvents.forEach(function (eventName) {
+//   document.body.addEventListener(eventName, function(e){
+//     e.preventDefault();
+//   });
 });
 
 
