@@ -35,6 +35,7 @@ if(window.location.hash) {
 //   console.log("error");
 // }
 
+
 console.log(hash);
 
 var Finish = function() {
@@ -53,9 +54,18 @@ var Finish = function() {
   var date = new Date();
   var formattedDate = moment(date).format('Do MMMM YYYY, h:mm a');
 
-  console.log(d);
+  $.get("http://ipinfo.io", function(response) {
 
-  var svgJSON = JSON.stringify({'date': d, 'formattedDate': formattedDate, 'name': name, 'index': hash, 'data': svgText})
+  var city = response.city;
+  var country = response.country;
+
+  var svgJSON = JSON.stringify({
+        'date': d,
+        'formattedDate': formattedDate + " " + city + " " + country,
+        'name': name,
+        'index': hash,
+        'data': svgText
+      })
 
   $.ajax({
       url: 'http://drawingtennis.herokuapp.com/save',
@@ -67,6 +77,9 @@ var Finish = function() {
       dataType: 'json'
     },
     savedCallback);
+
+  }, "jsonp")
+
 
 }
 

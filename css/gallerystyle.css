@@ -9,7 +9,7 @@ body {
     border-style: solid;
     border-color: #fff;
     background-color: #777;
-    background: radial-gradient(circle, lightgray 60%, black 130%);
+    background: radial-gradient(circle, gray 0%, lightgray 60%, black 130%);
 
 }
 .js div#preloader {
