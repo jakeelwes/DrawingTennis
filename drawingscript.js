@@ -35,7 +35,6 @@ if(window.location.hash) {
 //   console.log("error");
 // }
 
-
 console.log(hash);
 
 var Finish = function() {
@@ -52,7 +51,7 @@ var Finish = function() {
   }
   var d = Date.now(); //or new Date()
   var date = new Date();
-  var formattedDate = moment(date).format('Do MMMM YYYY, h:mm a');
+  var formattedDate = moment(date).format('L h:mm a'); //'Do MMMM YYYY, h:mm a'
 
   $.get("http://ipinfo.io", function(response) {
 
