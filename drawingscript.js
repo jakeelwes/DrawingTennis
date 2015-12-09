@@ -61,7 +61,7 @@ var Finish = function() {
 
   var svgJSON = JSON.stringify({
         'date': d,
-        'formattedDate': formattedDate + " " + city + " " + country,
+        'formattedDate': formattedDate + ", " + city + " " + country,
         'name': name,
         'index': hash,
         'data': svgText
