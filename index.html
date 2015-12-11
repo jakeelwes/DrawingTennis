@@ -11,6 +11,7 @@
   <script src="js/jquery-2.1.4.min.js"></script>
 
   <script src="js/d3.min.js"></script>
+  <script src="js/jquery.ajax-progress.js"></script>
 
   <link rel="stylesheet" type="text/css" href="css/gridstyle.css">
 
@@ -60,8 +61,70 @@
     $('#svgBG1 svg').css('opacity', '0');
   });
 
+  // $.ajax(
+  // {
+  //   type: 'POST',
+  //   url: "/",
+  //   data: {},
+  //   beforeSend: function(XMLHttpRequest)
+  //   {
+  //     //Upload progress
+  //     XMLHttpRequest.upload.addEventListener("progress", function(evt){
+  //       if (evt.lengthComputable) {
+  //         var percentComplete = evt.loaded / evt.total;
+  //         //Do something with upload progress
+  //       }
+  //     }, false);
+  //
+  //     //Download progress
+  //     XMLHttpRequest.addEventListener("progress", function(evt){
+  //       if (evt.lengthComputable) {
+  //         var percentComplete = evt.loaded / evt.total;
+  //         //Do something with download progress
+  //       }
+  //     }, false);
+  //   },
+  //
+  //   success: function(data){
+  //     // successful completion handler
+  //   }
+  // });
+
+  // $('#svgBG2:first').text('hihi');
+var $newDiv = $("<div id=\"load\"></div>");
+$newDiv.css('color', 'rgba(0,0,0,0.5)');
+$newDiv.css('position', 'absolute');
+$newDiv.css('padding-left', '8px');
+$newDiv.css('padding-top', '8px');
+$("#svgBG1").prepend($newDiv);
+
+  $.ajax({
+    method: 'GET',
+    url: 'http://drawingtennis.herokuapp.com/serve',
+    dataType: 'json',
+    success: function() { },
+    error: function() { },
+    progress: function(e) {
+        //make sure we can compute the length
+        if(e.lengthComputable) {
+            //calculate the percentage loaded
+            var pct = (e.loaded / e.total) * 100;
+
+            $("#load").text(Math.round(pct) + "%");
+
+            //log percentage loaded
+            console.log(pct);
+        }
+        //this usually happens when Content-Length isn't set
+        else {
+            console.warn('Content Length not reported!');
+        }
+    }
+});
+
     $.get("http://drawingtennis.herokuapp.com/serve", function (result) {
       console.log("THE SERVER SAYS: ", result)
+      $("#load").css('opacity', '0');
 
       var aNum = 0;
       $("#svgBG1").prepend("<div id=\"holder1\" />");

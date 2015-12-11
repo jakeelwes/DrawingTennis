@@ -53,6 +53,13 @@ l {
   font-size:20px;
 }
 
+#load{
+  font-weight:lighter;
+  text-align:left;
+  font-family:helvetica, sans-serif;
+
+}
+
 #instructions
 {
 font-weight:lighter;
